@@ -20,7 +20,7 @@ class Sample {
         //System.out.print("Enter the order of the maze: ");
         //n = 4;
         //initialize();
-        fp();
+        fp(4);
         printMaze(0,0);
         /*
         for (int k:a)
@@ -57,7 +57,7 @@ class Sample {
         //GridParhFinder.endCol=goldLocation[1];
 
     }
-    public static int[] fp() {
+    public static int[] fp(int n) {
         maze=new Block[n][n];
         for(int i=0; i<n; i++) {
             maze[i] = new Block[n];
@@ -67,20 +67,21 @@ class Sample {
 
         //GridParhFinder.GRID[wumpusLocation[0]][wumpusLocation[1]]=0;
         initialize();
-        int gridSize = 4;
+        int gridSize = n;
 
         random = new Random();
 
         // Randomly assign the locations of the pit, gold, and Wumpus
         //int gridSize = 4;
-        int numPits = 3;
+        //int numPits = 3;
+        int numPits = n-1;
 
         // Create a Random object
         //Random random = new Random();
 
         // Randomly assign the locations of the pits, gold, and Wumpus
         pitLocations = new ArrayList<>();
-        int[] spawn= {3,0};
+        int[] spawn= {n-1,0};
         wumpusLocation[0] = random.nextInt(gridSize);
         wumpusLocation[1] = random.nextInt(gridSize);
         while (isEqualLocation(wumpusLocation,spawn)) {
@@ -143,7 +144,7 @@ class Sample {
 
 
         //System.out.print("\nEnter the starting location: ");
-        int[] tarr=new int[10];
+        int[] tarr=new int[2*numPits+4];
         int k=0;
         for (int a[]:pitLocations)
         {

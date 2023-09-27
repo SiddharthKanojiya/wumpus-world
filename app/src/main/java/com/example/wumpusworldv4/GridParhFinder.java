@@ -17,16 +17,25 @@ class Cell {
 public class GridParhFinder {
     private static final int ROWS = 4;
     private static final int COLS = 4;
-    static int[][] GRID = {
+    //private static final int[][] GRID ;
+    static int[][] GRID4 = {
             {1, 1, 1, 1},
             {1, 1, 1, 1},
             {1, 1, 1, 1},
             {1, 1, 1, 1}
     };
+    static int[][] GRID5 = {
+            {1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1}
+    };
     static boolean foundPath;
     static List<Integer> cheatPath;
-    private static int[][] VISITED = new int[ROWS][COLS];
-
+    private static int[][] VISITED;
+    private static int[][] VISITED4 = new int[ROWS][COLS];
+    private static int[][] VISITED5 = new int[ROWS+1][COLS+1];
     private static final int[] ROW_NEIGHBORS = {-1, 0, 1, 0};
     private static final int[] COL_NEIGHBORS = {0, 1, 0, -1};
 
@@ -35,9 +44,11 @@ public class GridParhFinder {
     static int startCol;
     static int endRow;
     static int endCol;
-    static int gridSize=4;
-    public static void main(String[] args) {
+    static int gridSize;
+    private static int[][] GRID;
 
+    public static void main(String[] args) {
+        /*
         Sample.initialize();
         for(int i=0; i<gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
@@ -72,28 +83,38 @@ public class GridParhFinder {
             }
         } else {
             System.out.println("No path found.");
-        }
+        }*/
     }
-    public static List<Integer> CheatPath(int[] tarr)
+    public static List<Integer> CheatPath(int[] tarr,int level)
     {
+        if (level==4)
+        {
+            VISITED=VISITED4;
+            GRID=GRID4;
+        } else if (level==5) {
+            VISITED=VISITED5;
+            GRID=GRID5;
+        }
         //Sample.initialize();
+        gridSize=level;
+        //GRID=GRID4;
         for(int i=0; i<gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
                 GRID[i][j]=1;
                 VISITED[i][j]=0;
             }
         }
-        for (int i=0;i<6;i=i+2)
+        for (int i=0;i<(2*(level-1));i=i+2)
         {
             GRID[tarr[i]][tarr[i+1]]=0;
         }
-
+        int tarrsize=tarr.length;
         //GRID[Sample.wumpusLocation[0]][Sample.wumpusLocation[1]]=2;
-        GRID[tarr[6]][tarr[7]]=0;
-        startRow=3;
+        GRID[tarr[tarrsize-4]][tarr[tarrsize-3]]=0;
+        startRow=level-1;
         startCol=0;
-        endRow=tarr[8];
-        endCol=tarr[9];
+        endRow=tarr[tarrsize-2];
+        endCol=tarr[tarrsize-1];
         GRID[endRow][endCol]=5;
         //printMaze(3, 0,GRID);
     	/*for(int i=0; i<gridSize; i++) {
@@ -106,7 +127,7 @@ public class GridParhFinder {
         //System.out.println(startRow+""+startCol+""+endRow+""+endCol);
         path = new ArrayList<>();
         cheatPath=new ArrayList<>();
-        foundPath = findPath(startRow, startCol, endRow, endCol);
+        foundPath = findPath(startRow, startCol, endRow, endCol,level);
         if (foundPath) {
             //System.out.println("Path found:");
             return cheatPath;
@@ -115,8 +136,16 @@ public class GridParhFinder {
         }
     }
 
-    static boolean findPath(int row, int col, int endRow, int endCol) {
-        if (row < 0 || row >= ROWS || col < 0 || col >= COLS || GRID[row][col] == 0 || VISITED[row][col] == 1 || GRID[row][col] == 2 ) {
+    static boolean findPath(int row, int col, int endRow, int endCol,int level) {
+        if (level==4)
+        {
+            GRID=GRID4;
+            VISITED=VISITED4;
+        } else if (level==5) {
+            GRID=GRID5;
+            VISITED=VISITED5;
+        }
+        if (row < 0 || row >= level || col < 0 || col >= level || GRID[row][col] == 0 || VISITED[row][col] == 1 || GRID[row][col] == 2 ) {
             return false;
         }
 
@@ -134,7 +163,7 @@ public class GridParhFinder {
         for (int i = 0; i < ROW_NEIGHBORS.length; i++) {
             int newRow = row + ROW_NEIGHBORS[i];
             int newCol = col + COL_NEIGHBORS[i];
-            if (findPath(newRow, newCol, endRow, endCol)) {
+            if (findPath(newRow, newCol, endRow, endCol,level)) {
                 return true; // Path found
             }
         }

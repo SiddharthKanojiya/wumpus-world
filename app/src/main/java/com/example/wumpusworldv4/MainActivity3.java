@@ -21,21 +21,21 @@ import java.util.List;
 import java.util.Set;
 
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity3 extends AppCompatActivity  {
     // solution start
     //Sample.main(null);
     //String a=s;
     //solution end
     //int x=3;
-    int y=3;
+    int y=4;
     int level;
-    int p=30;
+    int p=40;
     boolean flag=true;
     //int[] path={20,30,31,21,11,30};
     //static Sample ww=new Sample();
-    static int[] a=Sample.fp(4);
+    static int[] a=Sample.fp(5);
     Block[][] m=Sample.maze;
-    static List<Integer> cpath=GridParhFinder.CheatPath(a,4);
+    static List<Integer> cpath=GridParhFinder.CheatPath(a,5);
 
     int size=cpath.size();
     //Set<Integer> player_set = new HashSet<Integer>();
@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity  {
 
 
         ((ImageView) findViewById(p)).setImageResource(0);
-        p=30;
-        ImageView img = findViewById(R.id.imageView12);
+        p=40;
+        ImageView img = findViewById(R.id.imageView20);
         img.setImageResource(R.drawable.man);
     }
 
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity  {
     private Handler handler;
     private Runnable runnable;
     int ptr;
-    int preptr=30;
+    int preptr=40;
     //int preptr=1000050;
     int pointer=0;
     ImageView imgview;
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main3);
         //ImageView imgvie=findViewBy
         /*
         HashMap<Integer, Cell> bl = new HashMap<>();
@@ -105,21 +105,31 @@ public class MainActivity extends AppCompatActivity  {
         bl2.put(1,m[0][1]);
         bl2.put(2,m[0][2]);
         bl2.put(3,m[0][3]);
+        bl2.put(4,m[0][4]);
 
         bl2.put(10,m[1][0]);
         bl2.put(11,m[1][1]);
         bl2.put(12,m[1][2]);
         bl2.put(13,m[1][3]);
+        bl2.put(14,m[1][4]);
 
         bl2.put(20,m[2][0]);
         bl2.put(21,m[2][1]);
         bl2.put(22,m[2][2]);
         bl2.put(23,m[2][3]);
+        bl2.put(24,m[2][4]);
 
         bl2.put(30,m[3][0]);
         bl2.put(31,m[3][1]);
         bl2.put(32,m[3][2]);
         bl2.put(33,m[3][3]);
+        bl2.put(34,m[3][4]);
+
+        bl2.put(40,m[4][0]);
+        bl2.put(41,m[4][1]);
+        bl2.put(42,m[4][2]);
+        bl2.put(43,m[4][3]);
+        bl2.put(44,m[4][4]);
 
 
 
@@ -128,73 +138,133 @@ public class MainActivity extends AppCompatActivity  {
         map.put(1,R.id.imageView1);
         map.put(2,R.id.imageView2);
         map.put(3,R.id.imageView3);
-        map.put(10,R.id.imageView4);
-        map.put(11,R.id.imageView5);
-        map.put(12,R.id.imageView6);
-        map.put(13,R.id.imageView7);
-        map.put(20,R.id.imageView8);
-        map.put(21,R.id.imageView9);
-        map.put(22,R.id.imageView10);
-        map.put(23,R.id.imageView11);
-        map.put(30,R.id.imageView12);
-        map.put(31,R.id.imageView13);
-        map.put(32,R.id.imageView14);
-        map.put(33,R.id.imageView15);
+        map.put(4,R.id.imageView4);
+
+        map.put(10,R.id.imageView5);
+        map.put(11,R.id.imageView6);
+        map.put(12,R.id.imageView7);
+        map.put(13,R.id.imageView8);
+        map.put(14,R.id.imageView9);
+
+        map.put(20,R.id.imageView10);
+        map.put(21,R.id.imageView11);
+        map.put(22,R.id.imageView12);
+        map.put(23,R.id.imageView13);
+        map.put(24,R.id.imageView14);
+
+        map.put(30,R.id.imageView15);
+        map.put(31,R.id.imageView16);
+        map.put(32,R.id.imageView17);
+        map.put(33,R.id.imageView18);
+        map.put(34,R.id.imageView19);
+
+        map.put(40,R.id.imageView20);
+        map.put(41,R.id.imageView21);
+        map.put(42,R.id.imageView22);
+        map.put(43,R.id.imageView23);
+        map.put(44,R.id.imageView24);
+
         map.put(100,R.id.button_up);
         map.put(101,R.id.button_right);
         map.put(102,R.id.button_left);
         map.put(99,R.id.button_down);
         HashMap<Integer, Integer> mapg = new HashMap<>();
+
         mapg.put(0,R.id.mingimageView0);
         mapg.put(1,R.id.mingimageView1);
         mapg.put(2,R.id.mingimageView2);
         mapg.put(3,R.id.mingimageView3);
-        mapg.put(10,R.id.mingimageView4);
-        mapg.put(11,R.id.mingimageView5);
-        mapg.put(12,R.id.mingimageView6);
-        mapg.put(13,R.id.mingimageView7);
-        mapg.put(20,R.id.mingimageView8);
-        mapg.put(21,R.id.mingimageView9);
-        mapg.put(22,R.id.mingimageView10);
-        mapg.put(23,R.id.mingimageView11);
-        mapg.put(30,R.id.mingimageView12);
-        mapg.put(31,R.id.mingimageView13);
-        mapg.put(32,R.id.mingimageView14);
-        mapg.put(33,R.id.mingimageView15);
+        mapg.put(4,R.id.mingimageView4);
+
+        mapg.put(10,R.id.mingimageView5);
+        mapg.put(11,R.id.mingimageView6);
+        mapg.put(12,R.id.mingimageView7);
+        mapg.put(13,R.id.mingimageView8);
+        mapg.put(14,R.id.mingimageView9);
+
+        mapg.put(20,R.id.mingimageView10);
+        mapg.put(21,R.id.mingimageView11);
+        mapg.put(22,R.id.mingimageView12);
+        mapg.put(23,R.id.mingimageView13);
+        mapg.put(24,R.id.mingimageView14);
+
+        mapg.put(30,R.id.mingimageView15);
+        mapg.put(31,R.id.mingimageView16);
+        mapg.put(32,R.id.mingimageView17);
+        mapg.put(33,R.id.mingimageView18);
+        mapg.put(34,R.id.mingimageView19);
+
+        mapg.put(40,R.id.mingimageView20);
+        mapg.put(41,R.id.mingimageView21);
+        mapg.put(42,R.id.mingimageView22);
+        mapg.put(43,R.id.mingimageView23);
+        mapg.put(44,R.id.mingimageView24);
+
+
         HashMap<Integer, Integer> mapb = new HashMap<>();
-        mapb.put(0,R.id.minbimageView0);
-        mapb.put(1,R.id.minbimageView1);
-        mapb.put(2,R.id.minbimageView2);
-        mapb.put(3,R.id.minbimageView3);
-        mapb.put(10,R.id.minbimageView4);
-        mapb.put(11,R.id.minbimageView5);
-        mapb.put(12,R.id.minbimageView6);
-        mapb.put(13,R.id.minbimageView7);
-        mapb.put(20,R.id.minbimageView8);
-        mapb.put(21,R.id.minbimageView9);
-        mapb.put(22,R.id.minbimageView10);
-        mapb.put(23,R.id.minbimageView11);
-        mapb.put(30,R.id.minbimageView12);
-        mapb.put(31,R.id.minbimageView13);
-        mapb.put(32,R.id.minbimageView14);
-        mapb.put(33,R.id.minbimageView15);
+
+        mapb.put(0,R.id.mingimageView0);
+        mapb.put(1,R.id.mingimageView1);
+        mapb.put(2,R.id.mingimageView2);
+        mapb.put(3,R.id.mingimageView3);
+        mapb.put(4,R.id.mingimageView4);
+
+        mapb.put(10,R.id.mingimageView5);
+        mapb.put(11,R.id.mingimageView6);
+        mapb.put(12,R.id.mingimageView7);
+        mapb.put(13,R.id.mingimageView8);
+        mapb.put(14,R.id.mingimageView9);
+
+        mapb.put(20,R.id.mingimageView10);
+        mapb.put(21,R.id.mingimageView11);
+        mapb.put(22,R.id.mingimageView12);
+        mapb.put(23,R.id.mingimageView13);
+        mapb.put(24,R.id.mingimageView14);
+
+        mapb.put(30,R.id.mingimageView15);
+        mapb.put(31,R.id.mingimageView16);
+        mapb.put(32,R.id.mingimageView17);
+        mapb.put(33,R.id.mingimageView18);
+        mapb.put(34,R.id.mingimageView19);
+
+        mapb.put(40,R.id.mingimageView20);
+        mapb.put(41,R.id.mingimageView21);
+        mapb.put(42,R.id.mingimageView22);
+        mapb.put(43,R.id.mingimageView23);
+        mapb.put(44,R.id.mingimageView24);
+
         HashMap<Integer, Integer> maps = new HashMap<>();
-        maps.put(0,R.id.minsimageView0);
-        maps.put(1,R.id.minsimageView1);
-        maps.put(2,R.id.minsimageView2);
-        maps.put(3,R.id.minsimageView3);
-        maps.put(10,R.id.minsimageView4);
-        maps.put(11,R.id.minsimageView5);
-        maps.put(12,R.id.minsimageView6);
-        maps.put(13,R.id.minsimageView7);
-        maps.put(20,R.id.minsimageView8);
-        maps.put(21,R.id.minsimageView9);
-        maps.put(22,R.id.minsimageView10);
-        maps.put(23,R.id.minsimageView11);
-        maps.put(30,R.id.minsimageView12);
-        maps.put(31,R.id.minsimageView13);
-        maps.put(32,R.id.minsimageView14);
-        maps.put(33,R.id.minsimageView15);
+
+        maps.put(0,R.id.mingimageView0);
+        maps.put(1,R.id.mingimageView1);
+        maps.put(2,R.id.mingimageView2);
+        maps.put(3,R.id.mingimageView3);
+        maps.put(4,R.id.mingimageView4);
+
+        maps.put(10,R.id.mingimageView5);
+        maps.put(11,R.id.mingimageView6);
+        maps.put(12,R.id.mingimageView7);
+        maps.put(13,R.id.mingimageView8);
+        maps.put(14,R.id.mingimageView9);
+
+        maps.put(20,R.id.mingimageView10);
+        maps.put(21,R.id.mingimageView11);
+        maps.put(22,R.id.mingimageView12);
+        maps.put(23,R.id.mingimageView13);
+        maps.put(24,R.id.mingimageView14);
+
+        maps.put(30,R.id.mingimageView15);
+        maps.put(31,R.id.mingimageView16);
+        maps.put(32,R.id.mingimageView17);
+        maps.put(33,R.id.mingimageView18);
+        maps.put(34,R.id.mingimageView19);
+
+        maps.put(40,R.id.mingimageView20);
+        maps.put(41,R.id.mingimageView21);
+        maps.put(42,R.id.mingimageView22);
+        maps.put(43,R.id.mingimageView23);
+        maps.put(44,R.id.mingimageView24);
+
         ImageButton down = findViewById(R.id.button_down);
         ImageButton left = findViewById(R.id.button_left);
         ImageButton right = findViewById(R.id.button_right);
@@ -212,7 +282,7 @@ public class MainActivity extends AppCompatActivity  {
         receiver_msg.setText(str);
         level=Integer.parseInt(intent.getStringExtra("level"));
         //String y="imageView12";
-        ImageView imageView = findViewById(R.id.imageView12);
+        ImageView imageView = findViewById(R.id.imageView20);
         imageView.setImageResource(R.drawable.man);
         handler = new Handler();
 
@@ -222,7 +292,7 @@ public class MainActivity extends AppCompatActivity  {
                 if (handler != null && runnable != null) {
                     handler.removeCallbacks(runnable);
                 }
-                Toast.makeText(MainActivity.this, cpath+""+size, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity3.this, cpath+""+size, Toast.LENGTH_SHORT).show();
                 /*
                 p=30;
                 //int temprory=(cpath.get((pointer - 1) % size)).intValue();
@@ -273,34 +343,44 @@ public class MainActivity extends AppCompatActivity  {
                 //status.append(String.valueOf(move));*/
                 //Re Randmomize Reset
                 move=0;
-                a=Sample.fp(4);
+                a=Sample.fp(5);
                 m=Sample.maze;
 
-                cpath=GridParhFinder.CheatPath(a,4);
+                cpath=GridParhFinder.CheatPath(a,5);
                 size=cpath.size();
 
                 bl2.put(0,m[0][0]);
                 bl2.put(1,m[0][1]);
                 bl2.put(2,m[0][2]);
                 bl2.put(3,m[0][3]);
+                bl2.put(4,m[0][4]);
 
                 bl2.put(10,m[1][0]);
                 bl2.put(11,m[1][1]);
                 bl2.put(12,m[1][2]);
                 bl2.put(13,m[1][3]);
+                bl2.put(14,m[1][4]);
 
                 bl2.put(20,m[2][0]);
                 bl2.put(21,m[2][1]);
                 bl2.put(22,m[2][2]);
                 bl2.put(23,m[2][3]);
+                bl2.put(24,m[2][4]);
 
                 bl2.put(30,m[3][0]);
                 bl2.put(31,m[3][1]);
                 bl2.put(32,m[3][2]);
                 bl2.put(33,m[3][3]);
+                bl2.put(34,m[3][4]);
+
+                bl2.put(40,m[4][0]);
+                bl2.put(41,m[4][1]);
+                bl2.put(42,m[4][2]);
+                bl2.put(43,m[4][3]);
+                bl2.put(44,m[4][4]);
                 pointer=0;
-                preptr=30;
-                p=30;
+                preptr=40;
+                p=40;
                 imgtemp=(ImageView)findViewById(map.get(p)) ;
                 imgtemp.setImageResource(R.drawable.man);
             }
@@ -318,7 +398,7 @@ public class MainActivity extends AppCompatActivity  {
                 }
                 else
                 {
-                    Toast.makeText(MainActivity.this, "Solution Doesnt Exist"+cpath+""+size, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity3.this, "Solution Doesnt Exist"+cpath+""+size, Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -329,13 +409,13 @@ public class MainActivity extends AppCompatActivity  {
         //ImageView i=findViewById(R.id.);
         up.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (p==30)
+                if (p==40)
                 {
 
                     flag=true;
                 }
                 // Do something in response to button click
-                if (p>3)
+                if (p>4)
                 {
                     move++;
                     //status.setText("Status");
@@ -351,21 +431,21 @@ public class MainActivity extends AppCompatActivity  {
                         int gold=mapg.get(p);
                         ImageView mingimageView2 = findViewById(gold);
                         mingimageView2.setImageResource(R.drawable.gold);
-                        Toast.makeText(MainActivity.this, "You found Gold", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity3.this, "You found Gold", Toast.LENGTH_SHORT).show();
                         goldpos=p;
                         if (move<size-1)
                         {
-                            Toast.makeText(MainActivity.this, "YOU WIN", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity3.this, "YOU WIN", Toast.LENGTH_SHORT).show();
                         }
                     }
                     if (ctemp.hasWumpus)
                     {
                         move=0;
-                        Toast.makeText(MainActivity.this, "Wampus ate you", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity3.this, "Wampus ate you", Toast.LENGTH_SHORT).show();
                         ((ImageView) findViewById(pv)).setImageResource(R.drawable.wumpus);
                         Extra_set.add(p);
-                        p=30;
-                        ImageView img = findViewById(R.id.imageView12);
+                        p=40;
+                        ImageView img = findViewById(R.id.imageView20);
                         img.setImageResource(R.drawable.man);
                         flag=false;
 
@@ -374,11 +454,11 @@ public class MainActivity extends AppCompatActivity  {
                     if (ctemp.hasPit)
                     {
                         move=0;
-                        Toast.makeText(MainActivity.this, "You fall into pit", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity3.this, "You fall into pit", Toast.LENGTH_SHORT).show();
                         ((ImageView) findViewById(pv)).setImageResource(R.drawable.pit);
                         Extra_set.add(p);
-                        p=30;
-                        ImageView img = findViewById(R.id.imageView12);
+                        p=40;
+                        ImageView img = findViewById(R.id.imageView20);
                         img.setImageResource(R.drawable.man);
                         flag=false;
 
@@ -417,11 +497,11 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 // Do something in response to button click
 
-                if (p==30)
+                if (p==40)
                 {
                     flag=true;
                 }
-                if (p<30)
+                if (p<40)
                 {
                     move++;
                     //status.setText("Status");
@@ -435,21 +515,21 @@ public class MainActivity extends AppCompatActivity  {
                         int gold=mapg.get(p);
                         ImageView mingimageView2 = findViewById(gold);
                         mingimageView2.setImageResource(R.drawable.gold);
-                        Toast.makeText(MainActivity.this, "You found Gold", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity3.this, "You found Gold", Toast.LENGTH_SHORT).show();
                         goldpos=p;
                         if (move<size-1)
                         {
-                            Toast.makeText(MainActivity.this, "YOU WIN", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity3.this, "YOU WIN", Toast.LENGTH_SHORT).show();
                         }
                     }
                     if (ctemp.hasWumpus)
                     {
                         move=0;
-                        Toast.makeText(MainActivity.this, "Wampus ate you", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity3.this, "Wampus ate you", Toast.LENGTH_SHORT).show();
                         ((ImageView) findViewById(pv)).setImageResource(R.drawable.wumpus);
                         Extra_set.add(p);
-                        p=30;
-                        ImageView img = findViewById(R.id.imageView12);
+                        p=40;
+                        ImageView img = findViewById(R.id.imageView20);
                         img.setImageResource(R.drawable.man);
                         flag=false;
 
@@ -457,11 +537,11 @@ public class MainActivity extends AppCompatActivity  {
                     if (ctemp.hasPit)
                     {
                         move=0;
-                        Toast.makeText(MainActivity.this, "You fall into pit", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity3.this, "You fall into pit", Toast.LENGTH_SHORT).show();
                         ((ImageView) findViewById(pv)).setImageResource(R.drawable.pit);
                         Extra_set.add(p);
-                        p=30;
-                        ImageView img = findViewById(R.id.imageView12);
+                        p=40;
+                        ImageView img = findViewById(R.id.imageView20);
                         img.setImageResource(R.drawable.man);
                         flag=false;
 
@@ -501,7 +581,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 // Do something in response to button click
 
-                if (p==30)
+                if (p==40)
                 {
                     flag=true;
                 }
@@ -519,21 +599,21 @@ public class MainActivity extends AppCompatActivity  {
                         int gold=mapg.get(p);
                         ImageView mingimageView2 = findViewById(gold);
                         mingimageView2.setImageResource(R.drawable.gold);
-                        Toast.makeText(MainActivity.this, "You found Gold", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity3.this, "You found Gold", Toast.LENGTH_SHORT).show();
                         goldpos=p;
                         if (move<size-1)
                         {
-                            Toast.makeText(MainActivity.this, "YOU WIN", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity3.this, "YOU WIN", Toast.LENGTH_SHORT).show();
                         }
                     }
                     if (ctemp.hasWumpus)
                     {
                         move=0;
-                        Toast.makeText(MainActivity.this, "Wampus ate you", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity3.this, "Wampus ate you", Toast.LENGTH_SHORT).show();
                         ((ImageView) findViewById(pv)).setImageResource(R.drawable.wumpus);
                         Extra_set.add(p);
-                        p=30;
-                        ImageView img = findViewById(R.id.imageView12);
+                        p=40;
+                        ImageView img = findViewById(R.id.imageView20);
                         img.setImageResource(R.drawable.man);
                         flag=false;
 
@@ -541,11 +621,11 @@ public class MainActivity extends AppCompatActivity  {
                     if (ctemp.hasPit)
                     {
                         move=0;
-                        Toast.makeText(MainActivity.this, "You fall into pit", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity3.this, "You fall into pit", Toast.LENGTH_SHORT).show();
                         ((ImageView) findViewById(pv)).setImageResource(R.drawable.pit);
                         Extra_set.add(p);
-                        p=30;
-                        ImageView img = findViewById(R.id.imageView12);
+                        p=40;
+                        ImageView img = findViewById(R.id.imageView20);
                         img.setImageResource(R.drawable.man);
                         flag=false;
 
@@ -584,12 +664,12 @@ public class MainActivity extends AppCompatActivity  {
         right.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                if (p==30)
+                if (p==40)
                 {
                     flag=true;
                 }
                 // Do something in response to button click
-                if (p%10<3)
+                if (p%10<4)
                 {
                     move++;
                     //status.setText("Status");
@@ -603,21 +683,21 @@ public class MainActivity extends AppCompatActivity  {
                         int gold=mapg.get(p);
                         ImageView mingimageView2 = findViewById(gold);
                         mingimageView2.setImageResource(R.drawable.gold);
-                        Toast.makeText(MainActivity.this, "You found Gold", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity3.this, "You found Gold", Toast.LENGTH_SHORT).show();
                         goldpos=p;
                         if (move<size-1)
                         {
-                            Toast.makeText(MainActivity.this, "YOU WIN", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity3.this, "YOU WIN", Toast.LENGTH_SHORT).show();
                         }
                     }
                     if (ctemp.hasWumpus)
                     {
                         move=0;
-                        Toast.makeText(MainActivity.this, "Wampus ate you", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity3.this, "Wampus ate you", Toast.LENGTH_SHORT).show();
                         ((ImageView) findViewById(pv)).setImageResource(R.drawable.wumpus);
                         Extra_set.add(p);
-                        p=30;
-                        ImageView img = findViewById(R.id.imageView12);
+                        p=40;
+                        ImageView img = findViewById(R.id.imageView20);
                         img.setImageResource(R.drawable.man);
                         flag=false;
 
@@ -625,11 +705,11 @@ public class MainActivity extends AppCompatActivity  {
                     if (ctemp.hasPit)
                     {
                         move=0;
-                        Toast.makeText(MainActivity.this, "You fall into pit", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity3.this, "You fall into pit", Toast.LENGTH_SHORT).show();
                         ((ImageView) findViewById(pv)).setImageResource(R.drawable.pit);
                         Extra_set.add(p);
-                        p=30;
-                        ImageView img = findViewById(R.id.imageView12);
+                        p=40;
+                        ImageView img = findViewById(R.id.imageView20);
                         img.setImageResource(R.drawable.man);
                         flag=false;
 
@@ -676,7 +756,7 @@ public class MainActivity extends AppCompatActivity  {
 
         //(int)map.get(cpath.get((pointer - 1) % size))
         //int idpreptr=(int)mapp.get(preptr);
-        if (preptr==30)
+        if (preptr==40)
         {
             int idpreptr=(int)mapp.get(preptr);
             ImageView iv=findViewById(idpreptr);
@@ -698,7 +778,7 @@ public class MainActivity extends AppCompatActivity  {
             int gold=(int)mapg.get(cpath.get(pointer));
             ImageView mivg= findViewById(gold);
             mivg.setImageResource(R.drawable.gold);
-            Toast.makeText(MainActivity.this, "You found Gold", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity3.this, "You found Gold", Toast.LENGTH_SHORT).show();
             goldpos=cpath.get(pointer);
 
             //break;
@@ -746,7 +826,7 @@ public class MainActivity extends AppCompatActivity  {
             }
             ImageView iv=findViewById(preptr);
             iv.setImageResource(0);
-            int spawn =(int)mapp.get(30);
+            int spawn =(int)mapp.get(40);
             ImageView iv2=findViewById(spawn);
             iv2.setImageResource(R.drawable.man);
             int butt =(int)mapp.get(100);
